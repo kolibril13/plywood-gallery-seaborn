@@ -90,6 +90,50 @@
         "css": "border: 3px solid #007AB8;width:200px",
         "code": "import seaborn as sns\nsns.set_theme(style=\"ticks\")\n\n# Load the planets dataset and initialize the figure\nplanets = sns.load_dataset(\"planets\")\ng = sns.JointGrid(data=planets, x=\"year\", y=\"distance\", marginal_ticks=True)\n\n# Set a log scaling on the y axis\ng.ax_joint.set(yscale=\"log\")\n\n# Create an inset legend for the histogram colorbar\ncax = g.figure.add_axes([.15, .55, .02, .2])\n\n# Add the joint and marginal histogram plots\ng.plot_joint(\n    sns.histplot, discrete=(True, False),\n    cmap=\"light:#03012d\", pmax=.8, cbar=True, cbar_ax=cax\n)\ng.plot_marginals(sns.histplot, element=\"step\", color=\"#03012d\")"
       }
+    ],
+    "Row 3": [
+      {
+        "image_path": "gallery_assets/Row_3_015_Seaborn.png",
+        "celltype": "Normal",
+        "css": "border: 3px solid #007AB8;width:200px",
+        "code": "import seaborn as sns\nsns.set_theme(style=\"ticks\")\n\n# Load the penguins dataset\npenguins = sns.load_dataset(\"penguins\")\n\n# Show the joint distribution using kernel density estimation\ng = sns.jointplot(\n    data=penguins,\n    x=\"bill_length_mm\", y=\"bill_depth_mm\", hue=\"species\",\n    kind=\"kde\",\n)"
+      },
+      {
+        "image_path": "gallery_assets/Row_3_016_Seaborn.png",
+        "celltype": "Normal",
+        "css": "border: 3px solid #007AB8;width:200px",
+        "code": "import numpy as np\nimport pandas as pd\nimport seaborn as sns\nimport matplotlib.pyplot as plt\nsns.set_theme(style=\"white\", rc={\"axes.facecolor\": (0, 0, 0, 0)})\n\n# Create the data\nrs = np.random.RandomState(1979)\nx = rs.randn(500)\ng = np.tile(list(\"ABCDEFGHIJ\"), 50)\ndf = pd.DataFrame(dict(x=x, g=g))\nm = df.g.map(ord)\ndf[\"x\"] += m\n\n# Initialize the FacetGrid object\npal = sns.cubehelix_palette(10, rot=-.25, light=.7)\ng = sns.FacetGrid(df, row=\"g\", hue=\"g\", aspect=15, height=.5, palette=pal)\n\n# Draw the densities in a few steps\ng.map(sns.kdeplot, \"x\",\n      bw_adjust=.5, clip_on=False,\n      fill=True, alpha=1, linewidth=1.5)\ng.map(sns.kdeplot, \"x\", clip_on=False, color=\"w\", lw=2, bw_adjust=.5)\n\n# passing color=None to refline() uses the hue mapping\ng.refline(y=0, linewidth=2, linestyle=\"-\", color=None, clip_on=False)\n\n\n# Define and use a simple function to label the plot in axes coordinates\ndef label(x, color, label):\n    ax = plt.gca()\n    ax.text(0, .2, label, fontweight=\"bold\", color=color,\n            ha=\"left\", va=\"center\", transform=ax.transAxes)\n\n\ng.map(label, \"x\")\n\n# Set the subplots to overlap\ng.figure.subplots_adjust(hspace=-.25)\n\n# Remove axes details that don&#39;t play well with overlap\ng.set_titles(\"\")\ng.set(yticks=[], ylabel=\"\")\ng.despine(bottom=True, left=True)"
+      },
+      {
+        "image_path": "gallery_assets/Row_3_017_Seaborn.png",
+        "celltype": "Normal",
+        "css": "border: 3px solid #007AB8;width:200px",
+        "code": "import seaborn as sns\nsns.set_theme(style=\"whitegrid\")\n\ndiamonds = sns.load_dataset(\"diamonds\")\nclarity_ranking = [\"I1\", \"SI2\", \"SI1\", \"VS2\", \"VS1\", \"VVS2\", \"VVS1\", \"IF\"]\n\nsns.boxenplot(x=\"clarity\", y=\"carat\",\n              color=\"b\", order=clarity_ranking,\n              scale=\"linear\", data=diamonds)"
+      },
+      {
+        "image_path": "gallery_assets/Row_3_018_Seaborn.png",
+        "celltype": "Normal",
+        "css": "border: 3px solid #007AB8;width:200px",
+        "code": "import numpy as np\nimport seaborn as sns\nimport matplotlib.pyplot as plt\nsns.set_theme(style=\"dark\")\n\n# Simulate data from a bivariate Gaussian\nn = 10000\nmean = [0, 0]\ncov = [(2, .4), (.4, .2)]\nrng = np.random.RandomState(0)\nx, y = rng.multivariate_normal(mean, cov, n).T\n\n# Draw a combo histogram and scatterplot with density contours\nf, ax = plt.subplots(figsize=(6, 6))\nsns.scatterplot(x=x, y=y, s=5, color=\".15\")\nsns.histplot(x=x, y=y, bins=50, pthresh=.1, cmap=\"mako\")\nsns.kdeplot(x=x, y=y, levels=5, color=\"w\", linewidths=1)"
+      },
+      {
+        "image_path": "gallery_assets/Row_3_019_Seaborn.png",
+        "celltype": "Normal",
+        "css": "border: 3px solid #007AB8;width:200px",
+        "code": "import seaborn as sns\nsns.set_theme(style=\"darkgrid\")\n\n# Load the example Titanic dataset\ndf = sns.load_dataset(\"titanic\")\n\n# Make a custom palette with gendered colors\npal = dict(male=\"#6495ED\", female=\"#F08080\")\n\n# Show the survival probability as a function of age and sex\ng = sns.lmplot(x=\"age\", y=\"survived\", col=\"sex\", hue=\"sex\", data=df,\n               palette=pal, y_jitter=.02, logistic=True, truncate=False)\ng.set(xlim=(0, 80), ylim=(-.05, 1.05))"
+      },
+      {
+        "image_path": "gallery_assets/Row_3_020_Seaborn.png",
+        "celltype": "Normal",
+        "css": "border: 3px solid #007AB8;width:200px",
+        "code": "import numpy as np\nimport pandas as pd\nimport seaborn as sns\nimport matplotlib.pyplot as plt\n\nsns.set_theme(style=\"ticks\")\n\n# Create a dataset with many short random walks\nrs = np.random.RandomState(4)\npos = rs.randint(-1, 2, (20, 5)).cumsum(axis=1)\npos -= pos[:, 0, np.newaxis]\nstep = np.tile(range(5), 20)\nwalk = np.repeat(range(20), 5)\ndf = pd.DataFrame(np.c_[pos.flat, step, walk],\n                  columns=[\"position\", \"step\", \"walk\"])\n\n# Initialize a grid of plots with an Axes for each walk\ngrid = sns.FacetGrid(df, col=\"walk\", hue=\"walk\", palette=\"tab20c\",\n                     col_wrap=4, height=1.5)\n\n# Draw a horizontal line to show the starting point\ngrid.refline(y=0, linestyle=\":\")\n\n# Draw a line plot to show the trajectory of each random walk\ngrid.map(plt.plot, \"step\", \"position\", marker=\"o\")\n\n# Adjust the tick positions and labels\ngrid.set(xticks=np.arange(5), yticks=[-3, 3],\n         xlim=(-.5, 4.5), ylim=(-3.5, 3.5))\n\n# Adjust the arrangement of the plots\ngrid.fig.tight_layout(w_pad=1)"
+      },
+      {
+        "image_path": "gallery_assets/Row_3_021_Seaborn.png",
+        "celltype": "Normal",
+        "css": "border: 3px solid #007AB8;width:200px",
+        "code": "from string import ascii_letters\nimport numpy as np\nimport pandas as pd\nimport seaborn as sns\nimport matplotlib.pyplot as plt\n\nsns.set_theme(style=\"white\")\n\n# Generate a large random dataset\nrs = np.random.RandomState(33)\nd = pd.DataFrame(data=rs.normal(size=(100, 26)),\n                 columns=list(ascii_letters[26:]))\n\n# Compute the correlation matrix\ncorr = d.corr()\n\n# Generate a mask for the upper triangle\nmask = np.triu(np.ones_like(corr, dtype=bool))\n\n# Set up the matplotlib figure\nf, ax = plt.subplots(figsize=(11, 9))\n\n# Generate a custom diverging colormap\ncmap = sns.diverging_palette(230, 20, as_cmap=True)\n\n# Draw the heatmap with the mask and correct aspect ratio\nsns.heatmap(corr, mask=mask, cmap=cmap, vmax=.3, center=0,\n            square=True, linewidths=.5, cbar_kws={\"shrink\": .5})"
+      }
     ]
   }
 }
