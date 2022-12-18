@@ -49,7 +49,7 @@
 
         .whole_page {
             margin: auto;
-            width: 700px;
+            width: 1500px;
             border-left: 3px solid #d6c6bb;
             border-right: 3px solid #d6c6bb;
 
@@ -256,34 +256,7 @@
         }
 
 
-        @media (max-width: 1200px) {
-            .container_info {
-                position: static;
-            }
-
-
-
-        }
-
-        /* TODO: This should be done with a smooth transition. */
-        @media (max-width: 750px) {
-            .whole_page {
-                width: 95%;
-            }
-        }
-
-        /* TODO: This should be done with a smooth transition. */
-        @media (max-width: 680px) {
-
-            .container_code {
-                width: 97%;
-            }
-
-            .container_code .python {
-                width: 100%;
-                ;
-            }
-        }
+   
     </style>
 </head>
 
@@ -306,8 +279,14 @@
         </div>
         <div>
             <br><br><br><br><br><br><br><br>
+
             <!-- TODO This can be done better with a fixed length -->
         </div>
+        <div class="githublink">
+            <i style="font-size:30px" class="fa fa-search"></i>
+            <div style="display:inline;">
+                <input style="font-size:30px;" type="search" id="search" autocomplete="off" data-search>
+            </div>
         <div id="gallery_container">
             <template gallery-item-template>
                 <img class='gallery_entry' src='' data-code='' style='width: auto;'
@@ -345,58 +324,8 @@
                                     plywood core v0.0.11</span></a></p>
                     </td>
                 </tr>
-                <tr>
-                    <td class="info_search_icon">
-                        <div class="tooltip">
-                            <div class="githublink">
-                                <i class="fa fa-search"></i>
-                            </div>
-                            <!-- TODO: This tooltip needs to be adjusted in a better way, should not be hard-coded! -->
-                            <div class="tooltiptext" style="padding:5px; width: 160px; margin-left:-130px">
-                                Search for keywords in gallery.
-                            </div>
-                        </div>
-                    </td>
-                    <td>
-                        <div>
-                            <input type="search" id="search" autocomplete="off" data-search>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="info_info_icon">
-                        <div class="tooltip">
-                            <div class="infologo">
-                                <i class="fa-solid fa-circle-info"></i>
-                            </div>
-                            <div class="tooltiptext">
-                                <ul>
-                                    <li> <strong>Header</strong> cells contain imports and definitions.</li>
-                                    <li> <strong>Normal</strong> cells are independent of each other, and can run
-                                        togehter
-                                        with the <strong>Header</strong> cell.
-                                    </li>
-                                    <li> A <strong>Dependent</strong> cell depends on the <strong>Normal</strong> cell
-                                        left
-                                        to it.
-                                    </li>
-                                    <li> A <strong>Dependent</strong> cell depends on another <strong>Dependent</strong>
-                                        cell left to it.
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="info_legend">
-                            <ul class='legend-labels'>
-                                <li><span style='background:#ED6A5A;'></span>Header</li>
-                                <li><span style='background:#007AB8;'></span>Normal</li>
-                                <li><span style='background:#A8DCF0;'></span>Dependent</li>
-                            </ul>
-                        </div>
-                    </td>
-                </tr>
+                
+                
             </table>
         </div>
     </div>

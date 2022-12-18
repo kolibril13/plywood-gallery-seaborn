@@ -1,28 +1,50 @@
 {
   "plywood_metadata": {
-    "plywood_gallery_core_version": "0.0.9"
+    "plywood_gallery_core_version": "0.0.11"
   },
   "plywood_content": {
-    "Chapter 1": [
+    "First Row": [
       {
-        "image_path": "gallery_assets/Chapter_1_001_Foo.png",
-        "celltype": "Header",
-        "css": "border: 3px solid #ED6A5A;width:240px",
-        "code": "import matplotlib.pyplot as plt\nplt.plot([1,2], [10,20], c = \"orange\")"
-      }
-    ],
-    "Chapter 2": [
-      {
-        "image_path": "gallery_assets/Chapter_2_002_Bar.png",
+        "image_path": "gallery_assets/First_Row_002_Seaborn.png",
         "celltype": "Normal",
         "css": "border: 3px solid #007AB8;width:240px",
-        "code": "import matplotlib.pyplot as plt\nplt.plot([1,2], [10,20], c= \"b\")"
+        "code": "import seaborn as sns\nsns.set_theme(style=\"ticks\")\n\n# Load the example dataset for Anscombe&#39;s quartet\ndf = sns.load_dataset(\"anscombe\")\n\n# Show the results of a linear regression within each dataset\nsns.lmplot(\n    data=df, x=\"x\", y=\"y\", col=\"dataset\", hue=\"dataset\",\n    col_wrap=2, palette=\"muted\", ci=None,\n    height=4, scatter_kws={\"s\": 50, \"alpha\": 1}\n)"
       },
       {
-        "image_path": "gallery_assets/Chapter_2_003_HelloWorld.png",
+        "image_path": "gallery_assets/First_Row_003_Seaborn.png",
         "celltype": "Normal",
         "css": "border: 3px solid #007AB8;width:240px",
-        "code": "import matplotlib.pyplot as plt\nplt.plot([1,2], [10,-20], c= \"b\")"
+        "code": "import seaborn as sns\nimport matplotlib.pyplot as plt\nsns.set_theme(style=\"whitegrid\")\n\n# Load the example diamonds dataset\ndiamonds = sns.load_dataset(\"diamonds\")\n\n# Draw a scatter plot while assigning point colors and sizes to different\n# variables in the dataset\nf, ax = plt.subplots(figsize=(6.5, 6.5))\nsns.despine(f, left=True, bottom=True)\nclarity_ranking = [\"I1\", \"SI2\", \"SI1\", \"VS2\", \"VS1\", \"VVS2\", \"VVS1\", \"IF\"]\nsns.scatterplot(x=\"carat\", y=\"price\",\n                hue=\"clarity\", size=\"depth\",\n                palette=\"ch:r=-.2,d=.3_r\",\n                hue_order=clarity_ranking,\n                sizes=(1, 8), linewidth=0,\n                data=diamonds, ax=ax)"
+      },
+      {
+        "image_path": "gallery_assets/First_Row_004_Seaborn.png",
+        "celltype": "Normal",
+        "css": "border: 3px solid #007AB8;width:240px",
+        "code": "import seaborn as sns\nsns.set_theme(style=\"darkgrid\")\n\n# Load an example dataset with long-form data\nfmri = sns.load_dataset(\"fmri\")\n\n# Plot the responses for different events and regions\nsns.lineplot(x=\"timepoint\", y=\"signal\",\n             hue=\"region\", style=\"event\",\n             data=fmri)"
+      },
+      {
+        "image_path": "gallery_assets/First_Row_005_Seaborn.png",
+        "celltype": "Normal",
+        "css": "border: 3px solid #007AB8;width:240px",
+        "code": "import seaborn as sns\n\nsns.set_theme(style=\"darkgrid\")\ndf = sns.load_dataset(\"penguins\")\nsns.displot(\n    df, x=\"flipper_length_mm\", col=\"species\", row=\"sex\",\n    binwidth=3, height=3, facet_kws=dict(margin_titles=True),\n)"
+      },
+      {
+        "image_path": "gallery_assets/First_Row_006_Seaborn.png",
+        "celltype": "Normal",
+        "css": "border: 3px solid #007AB8;width:240px",
+        "code": "import seaborn as sns\nsns.set_theme(style=\"ticks\")\n\ndots = sns.load_dataset(\"dots\")\n\n# Define the palette as a list to specify exact values\npalette = sns.color_palette(\"rocket_r\")\n\n# Plot the lines on two facets\nsns.relplot(\n    data=dots,\n    x=\"time\", y=\"firing_rate\",\n    hue=\"coherence\", size=\"choice\", col=\"align\",\n    kind=\"line\", size_order=[\"T1\", \"T2\"], palette=palette,\n    height=5, aspect=.75, facet_kws=dict(sharex=False),\n)"
+      },
+      {
+        "image_path": "gallery_assets/First_Row_007_Seaborn.png",
+        "celltype": "Normal",
+        "css": "border: 3px solid #007AB8;width:240px",
+        "code": "import seaborn as sns\nsns.set_theme(style=\"whitegrid\")\n\npenguins = sns.load_dataset(\"penguins\")\n\n# Draw a nested barplot by species and sex\ng = sns.catplot(\n    data=penguins, kind=\"bar\",\n    x=\"species\", y=\"body_mass_g\", hue=\"sex\",\n    errorbar=\"sd\", palette=\"dark\", alpha=.6, height=6\n)\ng.despine(left=True)\ng.set_axis_labels(\"\", \"Body mass (g)\")\ng.legend.set_title(\"\")"
+      },
+      {
+        "image_path": "gallery_assets/First_Row_008_Seaborn.png",
+        "celltype": "Normal",
+        "css": "border: 3px solid #007AB8;width:240px",
+        "code": "import seaborn as sns\nsns.set_theme(style=\"ticks\", palette=\"pastel\")\n\n# Load the example tips dataset\ntips = sns.load_dataset(\"tips\")\n\n# Draw a nested boxplot to show bills by day and time\nsns.boxplot(x=\"day\", y=\"total_bill\",\n            hue=\"smoker\", palette=[\"m\", \"g\"],\n            data=tips)\nsns.despine(offset=10, trim=True)"
       }
     ]
   }
