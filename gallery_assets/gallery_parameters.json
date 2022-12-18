@@ -3,48 +3,92 @@
     "plywood_gallery_core_version": "0.0.11"
   },
   "plywood_content": {
-    "First Row": [
+    "Row 1": [
       {
-        "image_path": "gallery_assets/First_Row_001_Seaborn.png",
+        "image_path": "gallery_assets/Row_1_001_Seaborn.png",
         "celltype": "Normal",
         "css": "border: 3px solid #007AB8;width:200px",
         "code": "import seaborn as sns\nsns.set_theme(style=\"ticks\")\n\n# Load the example dataset for Anscombe&#39;s quartet\ndf = sns.load_dataset(\"anscombe\")\n\n# Show the results of a linear regression within each dataset\nsns.lmplot(\n    data=df, x=\"x\", y=\"y\", col=\"dataset\", hue=\"dataset\",\n    col_wrap=2, palette=\"muted\", ci=None,\n    height=4, scatter_kws={\"s\": 50, \"alpha\": 1}\n)"
       },
       {
-        "image_path": "gallery_assets/First_Row_002_Seaborn.png",
+        "image_path": "gallery_assets/Row_1_002_Seaborn.png",
         "celltype": "Normal",
         "css": "border: 3px solid #007AB8;width:200px",
         "code": "import seaborn as sns\nimport matplotlib.pyplot as plt\nsns.set_theme(style=\"whitegrid\")\n\n# Load the example diamonds dataset\ndiamonds = sns.load_dataset(\"diamonds\")\n\n# Draw a scatter plot while assigning point colors and sizes to different\n# variables in the dataset\nf, ax = plt.subplots(figsize=(6.5, 6.5))\nsns.despine(f, left=True, bottom=True)\nclarity_ranking = [\"I1\", \"SI2\", \"SI1\", \"VS2\", \"VS1\", \"VVS2\", \"VVS1\", \"IF\"]\nsns.scatterplot(x=\"carat\", y=\"price\",\n                hue=\"clarity\", size=\"depth\",\n                palette=\"ch:r=-.2,d=.3_r\",\n                hue_order=clarity_ranking,\n                sizes=(1, 8), linewidth=0,\n                data=diamonds, ax=ax)"
       },
       {
-        "image_path": "gallery_assets/First_Row_003_Seaborn.png",
+        "image_path": "gallery_assets/Row_1_003_Seaborn.png",
         "celltype": "Normal",
         "css": "border: 3px solid #007AB8;width:200px",
         "code": "import seaborn as sns\nsns.set_theme(style=\"darkgrid\")\n\n# Load an example dataset with long-form data\nfmri = sns.load_dataset(\"fmri\")\n\n# Plot the responses for different events and regions\nsns.lineplot(x=\"timepoint\", y=\"signal\",\n             hue=\"region\", style=\"event\",\n             data=fmri)"
       },
       {
-        "image_path": "gallery_assets/First_Row_004_Seaborn.png",
+        "image_path": "gallery_assets/Row_1_004_Seaborn.png",
         "celltype": "Normal",
         "css": "border: 3px solid #007AB8;width:200px",
         "code": "import seaborn as sns\n\nsns.set_theme(style=\"darkgrid\")\ndf = sns.load_dataset(\"penguins\")\nsns.displot(\n    df, x=\"flipper_length_mm\", col=\"species\", row=\"sex\",\n    binwidth=3, height=3, facet_kws=dict(margin_titles=True),\n)"
       },
       {
-        "image_path": "gallery_assets/First_Row_005_Seaborn.png",
+        "image_path": "gallery_assets/Row_1_005_Seaborn.png",
         "celltype": "Normal",
         "css": "border: 3px solid #007AB8;width:200px",
         "code": "import seaborn as sns\nsns.set_theme(style=\"ticks\")\n\ndots = sns.load_dataset(\"dots\")\n\n# Define the palette as a list to specify exact values\npalette = sns.color_palette(\"rocket_r\")\n\n# Plot the lines on two facets\nsns.relplot(\n    data=dots,\n    x=\"time\", y=\"firing_rate\",\n    hue=\"coherence\", size=\"choice\", col=\"align\",\n    kind=\"line\", size_order=[\"T1\", \"T2\"], palette=palette,\n    height=5, aspect=.75, facet_kws=dict(sharex=False),\n)"
       },
       {
-        "image_path": "gallery_assets/First_Row_006_Seaborn.png",
+        "image_path": "gallery_assets/Row_1_006_Seaborn.png",
         "celltype": "Normal",
         "css": "border: 3px solid #007AB8;width:200px",
         "code": "import seaborn as sns\nsns.set_theme(style=\"whitegrid\")\n\npenguins = sns.load_dataset(\"penguins\")\n\n# Draw a nested barplot by species and sex\ng = sns.catplot(\n    data=penguins, kind=\"bar\",\n    x=\"species\", y=\"body_mass_g\", hue=\"sex\",\n    errorbar=\"sd\", palette=\"dark\", alpha=.6, height=6\n)\ng.despine(left=True)\ng.set_axis_labels(\"\", \"Body mass (g)\")\ng.legend.set_title(\"\")"
       },
       {
-        "image_path": "gallery_assets/First_Row_007_Seaborn.png",
+        "image_path": "gallery_assets/Row_1_007_Seaborn.png",
         "celltype": "Normal",
         "css": "border: 3px solid #007AB8;width:200px",
         "code": "import seaborn as sns\nsns.set_theme(style=\"ticks\", palette=\"pastel\")\n\n# Load the example tips dataset\ntips = sns.load_dataset(\"tips\")\n\n# Draw a nested boxplot to show bills by day and time\nsns.boxplot(x=\"day\", y=\"total_bill\",\n            hue=\"smoker\", palette=[\"m\", \"g\"],\n            data=tips)\nsns.despine(offset=10, trim=True)"
+      }
+    ],
+    "Row 2": [
+      {
+        "image_path": "gallery_assets/Row_2_008_Seaborn.png",
+        "celltype": "Normal",
+        "css": "border: 3px solid #007AB8;width:200px",
+        "code": "import seaborn as sns\nsns.set_theme(style=\"whitegrid\")\n\n# Load the example tips dataset\ntips = sns.load_dataset(\"tips\")\n\n# Draw a nested violinplot and split the violins for easier comparison\nsns.violinplot(data=tips, x=\"day\", y=\"total_bill\", hue=\"smoker\",\n               split=True, inner=\"quart\", linewidth=1,\n               palette={\"Yes\": \"b\", \"No\": \".85\"})\nsns.despine(left=True)"
+      },
+      {
+        "image_path": "gallery_assets/Row_2_009_Seaborn.png",
+        "celltype": "Normal",
+        "css": "border: 3px solid #007AB8;width:200px",
+        "code": "import seaborn as sns\nsns.set_theme(style=\"whitegrid\")\n\n# Load the brain networks dataset, select subset, and collapse the multi-index\ndf = sns.load_dataset(\"brain_networks\", header=[0, 1, 2], index_col=0)\n\nused_networks = [1, 5, 6, 7, 8, 12, 13, 17]\nused_columns = (df.columns\n                  .get_level_values(\"network\")\n                  .astype(int)\n                  .isin(used_networks))\ndf = df.loc[:, used_columns]\n\ndf.columns = df.columns.map(\"-\".join)\n\n# Compute a correlation matrix and convert to long-form\ncorr_mat = df.corr().stack().reset_index(name=\"correlation\")\n\n# Draw each cell as a scatter point with varying size and color\ng = sns.relplot(\n    data=corr_mat,\n    x=\"level_0\", y=\"level_1\", hue=\"correlation\", size=\"correlation\",\n    palette=\"vlag\", hue_norm=(-1, 1), edgecolor=\".7\",\n    height=10, sizes=(50, 250), size_norm=(-.2, .8),\n)\n\n# Tweak the figure to finalize\ng.set(xlabel=\"\", ylabel=\"\", aspect=\"equal\")\ng.despine(left=True, bottom=True)\ng.ax.margins(.02)\nfor label in g.ax.get_xticklabels():\n    label.set_rotation(90)\nfor artist in g.legend.legendHandles:\n    artist.set_edgecolor(\".7\")"
+      },
+      {
+        "image_path": "gallery_assets/Row_2_010_Seaborn.png",
+        "celltype": "Normal",
+        "css": "border: 3px solid #007AB8;width:200px",
+        "code": "import numpy as np\nimport seaborn as sns\nsns.set_theme(style=\"ticks\")\n\nrs = np.random.RandomState(11)\nx = rs.gamma(2, size=1000)\ny = -.5 * x + rs.normal(size=1000)\n\nsns.jointplot(x=x, y=y, kind=\"hex\", color=\"#4CB391\")"
+      },
+      {
+        "image_path": "gallery_assets/Row_2_011_Seaborn.png",
+        "celltype": "Normal",
+        "css": "border: 3px solid #007AB8;width:200px",
+        "code": "import seaborn as sns\nimport matplotlib as mpl\nimport matplotlib.pyplot as plt\n\nsns.set_theme(style=\"ticks\")\n\ndiamonds = sns.load_dataset(\"diamonds\")\n\nf, ax = plt.subplots(figsize=(7, 5))\nsns.despine(f)\n\nsns.histplot(\n    diamonds,\n    x=\"price\", hue=\"cut\",\n    multiple=\"stack\",\n    palette=\"light:m_r\",\n    edgecolor=\".3\",\n    linewidth=.5,\n    log_scale=True,\n)\nax.xaxis.set_major_formatter(mpl.ticker.ScalarFormatter())\nax.set_xticks([500, 1000, 2000, 5000, 10000])"
+      },
+      {
+        "image_path": "gallery_assets/Row_2_012_Seaborn.png",
+        "celltype": "Normal",
+        "css": "border: 3px solid #007AB8;width:200px",
+        "code": "import seaborn as sns\nimport matplotlib.pyplot as plt\n\nsns.set_theme(style=\"ticks\")\n\n# Initialize the figure with a logarithmic x axis\nf, ax = plt.subplots(figsize=(7, 6))\nax.set_xscale(\"log\")\n\n# Load the example planets dataset\nplanets = sns.load_dataset(\"planets\")\n\n# Plot the orbital period with horizontal boxes\nsns.boxplot(x=\"distance\", y=\"method\", data=planets,\n            whis=[0, 100], width=.6, palette=\"vlag\")\n\n# Add in points to show each observation\nsns.stripplot(x=\"distance\", y=\"method\", data=planets,\n              size=4, color=\".3\", linewidth=0)\n\n# Tweak the visual presentation\nax.xaxis.grid(True)\nax.set(ylabel=\"\")\nsns.despine(trim=True, left=True)"
+      },
+      {
+        "image_path": "gallery_assets/Row_2_013_Seaborn.png",
+        "celltype": "Normal",
+        "css": "border: 3px solid #007AB8;width:200px",
+        "code": "import pandas as pd\nimport seaborn as sns\nimport matplotlib.pyplot as plt\n\nsns.set_theme(style=\"whitegrid\")\niris = sns.load_dataset(\"iris\")\n\n# \"Melt\" the dataset to \"long-form\" or \"tidy\" representation\niris = pd.melt(iris, \"species\", var_name=\"measurement\")\n\n# Initialize the figure\nf, ax = plt.subplots()\nsns.despine(bottom=True, left=True)\n\n# Show each observation with a scatterplot\nsns.stripplot(\n    data=iris, x=\"value\", y=\"measurement\", hue=\"species\",\n    dodge=True, alpha=.25, zorder=1, legend=False\n)\n\n# Show the conditional means, aligning each pointplot in the\n# center of the strips by adjusting the width allotted to each\n# category (.8 by default) by the number of hue levels\nsns.pointplot(\n    data=iris, x=\"value\", y=\"measurement\", hue=\"species\",\n    join=False, dodge=.8 - .8 / 3, palette=\"dark\",\n    markers=\"d\", scale=.75, errorbar=None\n)\n\n# Improve the legend\nsns.move_legend(\n    ax, loc=\"lower right\", ncol=3, frameon=True, columnspacing=1, handletextpad=0\n)"
+      },
+      {
+        "image_path": "gallery_assets/Row_2_014_Seaborn.png",
+        "celltype": "Normal",
+        "css": "border: 3px solid #007AB8;width:200px",
+        "code": "import seaborn as sns\nsns.set_theme(style=\"ticks\")\n\n# Load the planets dataset and initialize the figure\nplanets = sns.load_dataset(\"planets\")\ng = sns.JointGrid(data=planets, x=\"year\", y=\"distance\", marginal_ticks=True)\n\n# Set a log scaling on the y axis\ng.ax_joint.set(yscale=\"log\")\n\n# Create an inset legend for the histogram colorbar\ncax = g.figure.add_axes([.15, .55, .02, .2])\n\n# Add the joint and marginal histogram plots\ng.plot_joint(\n    sns.histplot, discrete=(True, False),\n    cmap=\"light:#03012d\", pmax=.8, cbar=True, cbar_ax=cax\n)\ng.plot_marginals(sns.histplot, element=\"step\", color=\"#03012d\")"
       }
     ]
   }
