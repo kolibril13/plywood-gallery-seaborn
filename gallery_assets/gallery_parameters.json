@@ -1,6 +1,6 @@
 {
   "plywood_metadata": {
-    "plywood_gallery_core_version": "0.0.11"
+    "plywood_gallery_core_version": "0.0.12"
   },
   "plywood_content": {
     "Content": [
@@ -8,7 +8,7 @@
         "image_path": "gallery_assets/Content_001_Seaborn.png",
         "celltype": "Normal",
         "css": "border: 3px solid #007AB8;width:200px",
-        "code": "import seaborn as sns\nsns.set_theme(style=\"ticks\")\n\n# Load the example dataset for Anscombe&#39;s quartet\ndf = sns.load_dataset(\"anscombe\")\n\n# Show the results of a linear regression within each dataset\nsns.lmplot(\n    data=df, x=\"x\", y=\"y\", col=\"dataset\", hue=\"dataset\",\n    col_wrap=2, palette=\"muted\", ci=None,\n    height=4, scatter_kws={\"s\": 50, \"alpha\": 1}\n)"
+        "code": "import seaborn as sns\nsns.set_theme(style=\"ticks\")\n\n# Load the example dataset for Anscombe's quartet\ndf = sns.load_dataset(\"anscombe\")\n\n# Show the results of a linear regression within each dataset\nsns.lmplot(\n    data=df, x=\"x\", y=\"y\", col=\"dataset\", hue=\"dataset\",\n    col_wrap=2, palette=\"muted\", ci=None,\n    height=4, scatter_kws={\"s\": 50, \"alpha\": 1}\n)"
       },
       {
         "image_path": "gallery_assets/Content_002_Seaborn.png",
@@ -98,7 +98,7 @@
         "image_path": "gallery_assets/Content_016_Seaborn.png",
         "celltype": "Normal",
         "css": "border: 3px solid #007AB8;width:200px",
-        "code": "import numpy as np\nimport pandas as pd\nimport seaborn as sns\nimport matplotlib.pyplot as plt\nsns.set_theme(style=\"white\", rc={\"axes.facecolor\": (0, 0, 0, 0)})\n\n# Create the data\nrs = np.random.RandomState(1979)\nx = rs.randn(500)\ng = np.tile(list(\"ABCDEFGHIJ\"), 50)\ndf = pd.DataFrame(dict(x=x, g=g))\nm = df.g.map(ord)\ndf[\"x\"] += m\n\n# Initialize the FacetGrid object\npal = sns.cubehelix_palette(10, rot=-.25, light=.7)\ng = sns.FacetGrid(df, row=\"g\", hue=\"g\", aspect=15, height=.5, palette=pal)\n\n# Draw the densities in a few steps\ng.map(sns.kdeplot, \"x\",\n      bw_adjust=.5, clip_on=False,\n      fill=True, alpha=1, linewidth=1.5)\ng.map(sns.kdeplot, \"x\", clip_on=False, color=\"w\", lw=2, bw_adjust=.5)\n\n# passing color=None to refline() uses the hue mapping\ng.refline(y=0, linewidth=2, linestyle=\"-\", color=None, clip_on=False)\n\n\n# Define and use a simple function to label the plot in axes coordinates\ndef label(x, color, label):\n    ax = plt.gca()\n    ax.text(0, .2, label, fontweight=\"bold\", color=color,\n            ha=\"left\", va=\"center\", transform=ax.transAxes)\n\n\ng.map(label, \"x\")\n\n# Set the subplots to overlap\ng.figure.subplots_adjust(hspace=-.25)\n\n# Remove axes details that don&#39;t play well with overlap\ng.set_titles(\"\")\ng.set(yticks=[], ylabel=\"\")\ng.despine(bottom=True, left=True)"
+        "code": "import numpy as np\nimport pandas as pd\nimport seaborn as sns\nimport matplotlib.pyplot as plt\nsns.set_theme(style=\"white\", rc={\"axes.facecolor\": (0, 0, 0, 0)})\n\n# Create the data\nrs = np.random.RandomState(1979)\nx = rs.randn(500)\ng = np.tile(list(\"ABCDEFGHIJ\"), 50)\ndf = pd.DataFrame(dict(x=x, g=g))\nm = df.g.map(ord)\ndf[\"x\"] += m\n\n# Initialize the FacetGrid object\npal = sns.cubehelix_palette(10, rot=-.25, light=.7)\ng = sns.FacetGrid(df, row=\"g\", hue=\"g\", aspect=15, height=.5, palette=pal)\n\n# Draw the densities in a few steps\ng.map(sns.kdeplot, \"x\",\n      bw_adjust=.5, clip_on=False,\n      fill=True, alpha=1, linewidth=1.5)\ng.map(sns.kdeplot, \"x\", clip_on=False, color=\"w\", lw=2, bw_adjust=.5)\n\n# passing color=None to refline() uses the hue mapping\ng.refline(y=0, linewidth=2, linestyle=\"-\", color=None, clip_on=False)\n\n\n# Define and use a simple function to label the plot in axes coordinates\ndef label(x, color, label):\n    ax = plt.gca()\n    ax.text(0, .2, label, fontweight=\"bold\", color=color,\n            ha=\"left\", va=\"center\", transform=ax.transAxes)\n\n\ng.map(label, \"x\")\n\n# Set the subplots to overlap\ng.figure.subplots_adjust(hspace=-.25)\n\n# Remove axes details that don't play well with overlap\ng.set_titles(\"\")\ng.set(yticks=[], ylabel=\"\")\ng.despine(bottom=True, left=True)"
       },
       {
         "image_path": "gallery_assets/Content_017_Seaborn.png",
@@ -140,7 +140,7 @@
         "image_path": "gallery_assets/Content_023_Seaborn.png",
         "celltype": "Normal",
         "css": "border: 3px solid #007AB8;width:200px",
-        "code": "import seaborn as sns\nimport matplotlib.pyplot as plt\n\nsns.set_theme(style=\"darkgrid\")\niris = sns.load_dataset(\"iris\")\n\n# Set up the figure\nf, ax = plt.subplots(figsize=(8, 8))\nax.set_aspect(\"equal\")\n\n# Draw a contour plot to represent each bivariate density\nsns.kdeplot(\n    data=iris.query(\"species != &#39;versicolor&#39;\"),\n    x=\"sepal_width\",\n    y=\"sepal_length\",\n    hue=\"species\",\n    thresh=.1,\n)"
+        "code": "import seaborn as sns\nimport matplotlib.pyplot as plt\n\nsns.set_theme(style=\"darkgrid\")\niris = sns.load_dataset(\"iris\")\n\n# Set up the figure\nf, ax = plt.subplots(figsize=(8, 8))\nax.set_aspect(\"equal\")\n\n# Draw a contour plot to represent each bivariate density\nsns.kdeplot(\n    data=iris.query(\"species != 'versicolor'\"),\n    x=\"sepal_width\",\n    y=\"sepal_length\",\n    hue=\"species\",\n    thresh=.1,\n)"
       },
       {
         "image_path": "gallery_assets/Content_024_Seaborn.png",
@@ -206,7 +206,7 @@
         "image_path": "gallery_assets/Content_034_Seaborn.png",
         "celltype": "Normal",
         "css": "border: 3px solid #007AB8;width:200px",
-        "code": "import numpy as np\nimport pandas as pd\nimport seaborn as sns\n\nsns.set_theme()\n\n# Generate an example radial datast\nr = np.linspace(0, 10, num=100)\ndf = pd.DataFrame({&#39;r&#39;: r, &#39;slow&#39;: r, &#39;medium&#39;: 2 * r, &#39;fast&#39;: 4 * r})\n\n# Convert the dataframe to long-form or \"tidy\" format\ndf = pd.melt(df, id_vars=[&#39;r&#39;], var_name=&#39;speed&#39;, value_name=&#39;theta&#39;)\n\n# Set up a grid of axes with a polar projection\ng = sns.FacetGrid(df, col=\"speed\", hue=\"speed\",\n                  subplot_kws=dict(projection=&#39;polar&#39;), height=4.5,\n                  sharex=False, sharey=False, despine=False)\n\n# Draw a scatterplot onto each axes in the grid\ng.map(sns.scatterplot, \"theta\", \"r\")"
+        "code": "import numpy as np\nimport pandas as pd\nimport seaborn as sns\n\nsns.set_theme()\n\n# Generate an example radial datast\nr = np.linspace(0, 10, num=100)\ndf = pd.DataFrame({'r': r, 'slow': r, 'medium': 2 * r, 'fast': 4 * r})\n\n# Convert the dataframe to long-form or \"tidy\" format\ndf = pd.melt(df, id_vars=['r'], var_name='speed', value_name='theta')\n\n# Set up a grid of axes with a polar projection\ng = sns.FacetGrid(df, col=\"speed\", hue=\"speed\",\n                  subplot_kws=dict(projection='polar'), height=4.5,\n                  sharex=False, sharey=False, despine=False)\n\n# Draw a scatterplot onto each axes in the grid\ng.map(sns.scatterplot, \"theta\", \"r\")"
       },
       {
         "image_path": "gallery_assets/Content_035_Seaborn.png",
@@ -284,7 +284,7 @@
         "image_path": "gallery_assets/Content_047_Seaborn.png",
         "celltype": "Normal",
         "css": "border: 3px solid #007AB8;width:200px",
-        "code": "import seaborn as sns\n\nsns.set_theme(style=\"dark\")\nflights = sns.load_dataset(\"flights\")\n\n# Plot each year&#39;s time series in its own facet\ng = sns.relplot(\n    data=flights,\n    x=\"month\", y=\"passengers\", col=\"year\", hue=\"year\",\n    kind=\"line\", palette=\"crest\", linewidth=4, zorder=5,\n    col_wrap=3, height=2, aspect=1.5, legend=False,\n)\n\n# Iterate over each subplot to customize further\nfor year, ax in g.axes_dict.items():\n\n    # Add the title as an annotation within the plot\n    ax.text(.8, .85, year, transform=ax.transAxes, fontweight=\"bold\")\n\n    # Plot every year&#39;s time series in the background\n    sns.lineplot(\n        data=flights, x=\"month\", y=\"passengers\", units=\"year\",\n        estimator=None, color=\".7\", linewidth=1, ax=ax,\n    )\n\n# Reduce the frequency of the x axis ticks\nax.set_xticks(ax.get_xticks()[::2])\n\n# Tweak the supporting aspects of the plot\ng.set_titles(\"\")\ng.set_axis_labels(\"\", \"Passengers\")\ng.tight_layout()"
+        "code": "import seaborn as sns\n\nsns.set_theme(style=\"dark\")\nflights = sns.load_dataset(\"flights\")\n\n# Plot each year's time series in its own facet\ng = sns.relplot(\n    data=flights,\n    x=\"month\", y=\"passengers\", col=\"year\", hue=\"year\",\n    kind=\"line\", palette=\"crest\", linewidth=4, zorder=5,\n    col_wrap=3, height=2, aspect=1.5, legend=False,\n)\n\n# Iterate over each subplot to customize further\nfor year, ax in g.axes_dict.items():\n\n    # Add the title as an annotation within the plot\n    ax.text(.8, .85, year, transform=ax.transAxes, fontweight=\"bold\")\n\n    # Plot every year's time series in the background\n    sns.lineplot(\n        data=flights, x=\"month\", y=\"passengers\", units=\"year\",\n        estimator=None, color=\".7\", linewidth=1, ax=ax,\n    )\n\n# Reduce the frequency of the x axis ticks\nax.set_xticks(ax.get_xticks()[::2])\n\n# Tweak the supporting aspects of the plot\ng.set_titles(\"\")\ng.set_axis_labels(\"\", \"Passengers\")\ng.tight_layout()"
       },
       {
         "image_path": "gallery_assets/Content_048_Seaborn.png",
